@@ -3,12 +3,18 @@ import path from "path";
 import { fileURLToPath } from "url";
 import recipeRoutes from "./routes/recipeRoutes.js";
 import 'dotenv/config';
+import mongoose from "mongoose";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+//connect to the database
+mongoose.connect(process.env.MONGO_URL)
+  .then(() => console.log("DB connection successful"))
+  .catch(() => console.log("Error in DB connection"));
 
 // Set up view engine
 app.set("view engine", "ejs");
@@ -20,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));  // Parse URL-encoded bodies
 app.use(express.json());  // Parse JSON bodies
 
 // Routes
-app.use("/", recipeRoutes);
+app.use("/recipes", recipeRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);

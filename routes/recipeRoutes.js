@@ -3,9 +3,9 @@ import { list, redirectToNewRecipe, redirectToEditRecipe, redirectToDeleteRecipe
 
 const router = Router();
 
-router.get("/recipes", list);
-router.get("/recipes/new", redirectToNewRecipe);
-router.get("/recipes/edit", redirectToEditRecipe);
-router.get("/recipes/delete", redirectToDeleteRecipe);  
+router.get("/", list);
+router.get("/new", redirectToNewRecipe);
+router.get("/edit", redirectToEditRecipe);
+router.get("/delete", redirectToDeleteRecipe);  
   
 export default router;
